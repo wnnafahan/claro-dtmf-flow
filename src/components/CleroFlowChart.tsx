@@ -12,9 +12,18 @@ const CleroFlowChart = () => {
         fitView
         attributionPosition="bottom-right"
       >
-        <Background />
+        <Background color="#f8f8f8" gap={16} />
         <Controls />
-        <MiniMap />
+        <MiniMap 
+          nodeStrokeColor={(n) => {
+            return '#000';
+          }}
+          maskStrokeColor="#6865A5"
+          nodeBorderRadius={2}
+          nodeColor={(n) => {
+            return n.style?.backgroundColor || '#fff';
+          }}
+        />
       </ReactFlow>
     </div>
   );
