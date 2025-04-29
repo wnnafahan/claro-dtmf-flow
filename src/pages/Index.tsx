@@ -1,7 +1,8 @@
-import CleroFlowChart from '../components/CleroFlowChart';
+
+import OrderFlowChart from '../components/OrderFlowChart';
 
 const Index = () => {
-  return <CleroFlowChart />;
+  return <OrderFlowChart />;
 };
 
 export default Index;
