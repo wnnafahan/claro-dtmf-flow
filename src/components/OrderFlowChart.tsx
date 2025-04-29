@@ -1,15 +1,14 @@
-
 import { ReactFlow, MiniMap, Controls, Background } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { useState } from 'react';
-import { Input, SquareDashed, Square, Terminal } from 'lucide-react';
+import { FileInput, SquareDashed, Square, Terminal } from 'lucide-react';
 import { Button } from './ui/button';
 
 // Define node types
 const nodeTypes = {
   start: ({ data }) => (
     <div className="px-4 py-2 rounded-md border border-green-500 bg-green-50 flex items-center">
-      <Input className="mr-2 text-green-600" size={18} />
+      <FileInput className="mr-2 text-green-600" size={18} />
       <div>{data.label}</div>
     </div>
   ),
