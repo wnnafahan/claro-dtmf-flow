@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import FlowChartFullscreen from "./pages/FlowChartFullscreen";
 import HutchPortabilityFullscreen from "./pages/HutchPortabilityFullscreen";
+import BrandingGuidelines from "./pages/BrandingGuidelines";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/flowchart" element={<FlowChartFullscreen />} />
           <Route path="/hutch-portability" element={<HutchPortabilityFullscreen />} />
+          <Route path="/branding-guidelines" element={<BrandingGuidelines />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -2,7 +2,7 @@
 import OrderFlowChart from '../components/OrderFlowChart';
 import HutchPortabilityChart from '../components/HutchPortabilityChart';
 import { Button } from '../components/ui/button';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Palette } from 'lucide-react';
 
 const Index = () => {
   const openOrderFlowFullscreen = () => {
@@ -13,10 +13,14 @@ const Index = () => {
     window.open('/hutch-portability', '_blank');
   };
 
+  const openBrandingGuidelines = () => {
+    window.open('/branding-guidelines', '_blank');
+  };
+
   return (
     <div className="w-full min-h-screen flex flex-col">
       <div className="p-4 bg-white border-b shadow-sm flex justify-between items-center">
-        <h1 className="text-2xl font-semibold">Business Flow Charts</h1>
+        <h1 className="text-2xl font-semibold">Business Tools</h1>
         <div className="flex gap-2">
           <Button onClick={openOrderFlowFullscreen} className="flex items-center gap-2">
             <span>Order Flow</span>
@@ -24,6 +28,11 @@ const Index = () => {
           </Button>
           <Button onClick={openHutchPortabilityFullscreen} className="flex items-center gap-2" variant="outline">
             <span>Hutch Portability</span>
+            <ExternalLink size={16} />
+          </Button>
+          <Button onClick={openBrandingGuidelines} className="flex items-center gap-2" variant="secondary">
+            <Palette size={16} />
+            <span>Brand Guidelines</span>
             <ExternalLink size={16} />
           </Button>
         </div>
