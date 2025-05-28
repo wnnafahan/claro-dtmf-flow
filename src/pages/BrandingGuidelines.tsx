@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -6,66 +7,13 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { CheckCircle, XCircle, Download, Share2, Eye, Copy } from 'lucide-react';
 import { toast } from 'sonner';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 const BrandingGuidelines = () => {
   const [activeExample, setActiveExample] = useState('correct');
-  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast.success('Copied to clipboard!');
-  };
-
-  const downloadPDF = async () => {
-    setIsGeneratingPDF(true);
-    toast.info('Generating PDF... This may take a moment.');
-
-    try {
-      // Create a new PDF document
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      
-      // Get the main content container
-      const element = document.querySelector('.pdf-content');
-      if (!element) {
-        toast.error('Could not find content to export');
-        return;
-      }
-
-      // Convert the element to canvas
-      const canvas = await html2canvas(element as HTMLElement, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        logging: false,
-        height: (element as HTMLElement).scrollHeight,
-        width: (element as HTMLElement).scrollWidth
-      });
-
-      const imgData = canvas.toDataURL('image/png');
-      
-      // Calculate dimensions to fit the PDF page
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 0;
-
-      // Add the image to PDF
-      pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
-      
-      // Save the PDF
-      pdf.save('brand-guidelines.pdf');
-      toast.success('PDF downloaded successfully!');
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-      toast.error('Failed to generate PDF. Please try again.');
-    } finally {
-      setIsGeneratingPDF(false);
-    }
   };
 
   const colorPalette = [
@@ -103,7 +51,7 @@ const BrandingGuidelines = () => {
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Brand Guidelines</h1>
+              <h1 className="text-3xl font-bold text-gray-900">Requesting Branding Guideline from SLT</h1>
               <p className="text-gray-600 mt-1">Comprehensive brand identity standards</p>
             </div>
             <div className="flex gap-3">
@@ -111,20 +59,16 @@ const BrandingGuidelines = () => {
                 <Share2 size={16} />
                 Share
               </Button>
-              <Button 
-                onClick={downloadPDF} 
-                disabled={isGeneratingPDF}
-                className="flex items-center gap-2"
-              >
+              <Button className="flex items-center gap-2">
                 <Download size={16} />
-                {isGeneratingPDF ? 'Generating...' : 'Download PDF'}
+                Download PDF
               </Button>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-8 pdf-content">
+      <div className="max-w-6xl mx-auto px-6 py-8">
         <Tabs defaultValue="logo" className="w-full">
           <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="logo">Logo Usage</TabsTrigger>
